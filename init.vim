@@ -14,6 +14,7 @@ set showmatch
 set ruler
 set showcmd
 
+let mapleader="\<space>"
 noremap Q :q<CR>
 
 " Compile function

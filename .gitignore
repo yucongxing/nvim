@@ -1,0 +1,3 @@
+*.swp
+plugged/
+autoload/plug.vim.old

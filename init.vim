@@ -2,8 +2,10 @@ set encoding=utf-8
 set number
 set relativenumber
 set scrolloff=5
-
+set autochdir
 set cursorline
+set splitright
+set splitbelow
 
 set expandtab
 set tabstop=4
@@ -16,6 +18,8 @@ set showcmd
 
 let mapleader="\<space>"
 noremap Q :q<CR>
+
+noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Compile function
 noremap <F5> :call CompileRunGcc()<CR>

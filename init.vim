@@ -7,7 +7,6 @@ set cursorline
 set splitright
 set splitbelow
 syntax on
-color onedark
 
 set expandtab
 set tabstop=4
@@ -226,3 +225,7 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
+
+colorscheme onedark

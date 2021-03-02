@@ -6,6 +6,8 @@ set autochdir
 set cursorline
 set splitright
 set splitbelow
+syntax on
+color onedark
 
 set expandtab
 set tabstop=4
@@ -16,7 +18,7 @@ set showmatch
 set ruler
 set showcmd
 
-let mapleader="\<space>"
+let mapleader=" "
 noremap Q :q<CR>
 
 noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
@@ -57,6 +59,9 @@ Plug 'ojroques/vim-scrollstatus'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'tag': 'v0.0.79'}
 Plug 'wellle/tmux-complete.vim'
+
+"color scheme
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 

@@ -17,7 +17,7 @@ set showmatch
 set ruler
 set showcmd
 
-let g:python3_host_prog = "~/.pyenv/versions/3.9.3/bin/python"
+let g:python3_host_prog = "usr/bin/python"
 
 let mapleader=" "
 noremap Q :q<CR>
@@ -79,16 +79,9 @@ call plug#end()
 " TextEdit might fail if hidden is not set.
  set hidden
 
- " Some servers have issues with backup files, see #649.
- set nobackup
- set nowritebackup
-
- " Give more space for displaying messages.
- set cmdheight=2
-
  " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
  " delays and poor user experience.
- set updatetime=300
+ set updatetime=100
 
  " Don't pass messages to |ins-completion-menu|.
  set shortmess+=c
@@ -121,10 +114,12 @@ if has('nvim')
 else
     inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+                             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -258,9 +253,8 @@ let g:vmt_cycle_list_item_markers = 1
 let g:vmt_fence_text = 'TOC'
 let g:vmt_fence_closing_text = '/TOC'
 
-colorscheme onedark
 hi Normal ctermfg=252 ctermbg=none
+colorscheme onedark
 
-let g:mkdp_browser = 'firefox'
+let g:mkdp_browser = 'chromium'
 let g:mkdp_browser_func = 'open'
-

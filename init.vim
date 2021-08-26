@@ -33,7 +33,7 @@ func! CompileRunGcc()
         exec "!time ./%<"
     elseif &filetype == 'cpp'
         set splitbelow
-        exec "!g++ -std=c++11 % -Wall -o %<.o"
+        exec "!clang++ -std=c++11 % -Wall -o %<.o"
         :sp
         :res -15
         :term ./%<.o
@@ -71,6 +71,9 @@ Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
 Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] }
 Plug 'dkarter/bullets.vim'
+
+" C++
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 call plug#end()
 

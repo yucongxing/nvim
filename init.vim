@@ -13,11 +13,11 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 set showmatch
+set ignorecase
+set cinoptions+=g0
 
 set ruler
 set showcmd
-
-let g:python3_host_prog = "usr/bin/python"
 
 let mapleader=" "
 noremap Q :q<CR>
@@ -29,14 +29,14 @@ noremap <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
-        exec "!g++ % -o %<"
+        exec "!gcc % -o %<"
         exec "!time ./%<"
     elseif &filetype == 'cpp'
         set splitbelow
-        exec "!g++ -std=c++11 % -Wall -o %<"
+        exec "!g++ -std=c++11 % -Wall -o %<.o"
         :sp
         :res -15
-        :term ./%<
+        :term ./%<.o
     elseif &filetype == 'java'
         exec "!javac %"
         exec "!time java %<"
@@ -117,7 +117,7 @@ endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>"
                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics

@@ -79,6 +79,11 @@ call plug#end()
 
 "coc.nvim
 
+let g:coc_global_extensions = [
+            \ 'coc-pyright',
+            \ 'coc-json',
+            \ 'coc-snippets']
+
 " TextEdit might fail if hidden is not set.
  set hidden
 

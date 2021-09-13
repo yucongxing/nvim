@@ -3,7 +3,7 @@
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
     "suggest.triggerAfterInsertEnter": true,
-    
+
     "languageserver": {
       "ccls": {
         "command": "ccls",
@@ -16,5 +16,10 @@
             "highlight": {"lsRanges" : true}
           }
       }
-    }
+    },
+
+    "snippets.ultisnips.directories": [
+        "$HOME/.config/nvim/Ultisnips",
+        "UltiSnips"
+    ]
 }

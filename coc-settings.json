@@ -1,22 +1,12 @@
 {
     "coc.preferences.extensionUpdateCheck": "daily",
+    "coc.preferences.semanticTokensHighlights": false,
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
     "suggest.triggerAfterInsertEnter": true,
 
-    "languageserver": {
-      "ccls": {
-        "command": "ccls",
-        "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
-        "rootPatterns": [".ccls", "compile_commands.json"],
-        "initializationOptions": {
-            "cache": {
-              "directory": "/tmp/ccls"
-            },
-            "highlight": {"lsRanges" : true}
-          }
-      }
-    },
+    "clangd.enabled": true,
+    "clangd.semanticHighlighting": true,
 
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/Ultisnips",

@@ -33,7 +33,7 @@ func! CompileRunGcc()
         exec "!time ./%<"
     elseif &filetype == 'cpp'
         set splitbelow
-        exec "!clang++ -std=c++11 % -Wall -o %<.o"
+        exec "!clang++ -std=c++20 % -Wall -o %<.o"
         :sp
         :res -15
         :term ./%<.o
@@ -47,8 +47,6 @@ func! CompileRunGcc()
         :sp
         :resize -10
         :term python3 %
-    elseif &filetype == 'markdown'
-        exec "InstantMarkdownPreview"
     endif
 endfunc
 
@@ -61,18 +59,11 @@ Plug 'ojroques/vim-scrollstatus'
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'tag': 'v0.0.79'}
-Plug 'wellle/tmux-complete.vim'
 
 "color scheme
 Plug 'joshdick/onedark.vim'
 
-" Markdown
-Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
-Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] }
-Plug 'dkarter/bullets.vim'
-
-" C++
+"C++
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 call plug#end()
@@ -82,7 +73,8 @@ call plug#end()
 let g:coc_global_extensions = [
             \ 'coc-pyright',
             \ 'coc-json',
-            \ 'coc-snippets']
+            \ 'coc-snippets',
+            \ 'coc-clangd']
 
 " TextEdit might fail if hidden is not set.
  set hidden
@@ -240,29 +232,5 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
-
-" ===
-" === vim-instant-markdown
-" ===
-let g:instant_markdown_slow = 0
-let g:instant_markdown_autostart = 0
-" let g:instant_markdown_open_to_the_world = 1
-" let g:instant_markdown_allow_unsafe_content = 1
-" let g:instant_markdown_allow_external_content = 0
-" let g:instant_markdown_mathjax = 1
-let g:instant_markdown_autoscroll = 1
-
-" ===
-" === vim-markdown-toc
-" ===
-"let g:vmt_auto_update_on_save = 0
-"let g:vmt_dont_insert_fence = 1
-let g:vmt_cycle_list_item_markers = 1
-let g:vmt_fence_text = 'TOC'
-let g:vmt_fence_closing_text = '/TOC'
-
 hi Normal ctermfg=252 ctermbg=none
 colorscheme onedark
-
-let g:mkdp_browser = 'chromium'
-let g:mkdp_browser_func = 'open'

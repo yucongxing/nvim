@@ -54,14 +54,14 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Status line
 Plug 'vim-airline/vim-airline'
-Plug 'ojroques/vim-scrollstatus'
+Plug 'vim-airline/vim-airline-themes'
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'tag': 'v0.0.79'}
 
 "color scheme
-Plug 'joshdick/onedark.vim'
+Plug 'overcache/NeoSolarized'
 
 "C++
 Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -231,6 +231,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-
-hi Normal ctermfg=252 ctermbg=none
-colorscheme onedark
+colorscheme NeoSolarized
+let g:airline_theme='solarized'
+hi Normal ctermfg=252 ctermbg=NONE
+set background=light

@@ -231,6 +231,9 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+"vim-lsp-cxx-highlight
+let g:lsp_cxx_hl_light_bg = 1 
+
 colorscheme NeoSolarized
 let g:airline_theme='solarized'
 hi Normal ctermfg=252 ctermbg=NONE

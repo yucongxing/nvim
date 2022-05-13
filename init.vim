@@ -21,6 +21,18 @@ set showcmd
 
 let mapleader=" "
 noremap Q :q<CR>
+noremap <C-_> :call CommentTheLine()<CR>
+func! CommentTheLine()
+    if &filetype == 'c'
+        exec "normal! I// "
+    elseif &filetype == 'cpp'
+        exec "normal! I// "
+    elseif &filetype == 'python'
+        exec "normal! I# "
+    elseif &filetype == 'vim'
+        exec "normal! I\" "
+    endif
+endfunc
 
 noremap <LEADER>rc :e $MYVIMRC<CR>
 
@@ -29,23 +41,24 @@ noremap <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
-        exec "!gcc % -o %<"
-        exec "!time ./%<"
+        exec "!gcc % -o %<.o"
+        :sp
+        :res 10
+        term ./%<.o
     elseif &filetype == 'cpp'
         set splitbelow
         exec "!clang++ -std=c++20 % -Wall -o %<.o"
         :sp
-        :res -15
+        :res 10
         :term ./%<.o
-    elseif &filetype == 'java'
-        exec "!javac %"
-        exec "!time java %<"
     elseif &filetype == 'sh'
-        :!time bash %
+        :sp
+        :res 10
+        :term bash %
     elseif &filetype == 'python'
         set splitbelow
         :sp
-        :resize -10
+        :resize 10
         :term python3 %
     endif
 endfunc
@@ -232,7 +245,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 "vim-lsp-cxx-highlight
-let g:lsp_cxx_hl_light_bg = 1 
+let g:lsp_cxx_hl_light_bg = 1
 
 colorscheme NeoSolarized
 let g:airline_theme='solarized'

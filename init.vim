@@ -28,7 +28,7 @@ noremap <silent> <C-_> :call CommentTheLine()<CR>
 
 augroup _format
   autocmd!
-  autocmd BufWritePre *.cpp,*.h,*.py,*.c,*.cxx,*.cc,*.hpp :Format
+  autocmd BufWritePre *.cpp,*.h,*.py,*.c,*.cxx,*.cc,*.hpp,*.lua :Format
 augroup end
 
 func! CloseQuickfix()
@@ -216,7 +216,7 @@ lua << EOF
       vim.cmd [[command! Format execute 'lua vim.lsp.buf.format({async = true})']]
     end
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    local servers = { 'pyright', 'clangd'}
+    local servers = { 'pyright', 'clangd', 'sumneko_lua'}
     for _, lsp in pairs(servers) do
       local options = {
           on_attach = on_attach,
@@ -250,6 +250,35 @@ lua << EOF
             capabilities = capabilities,
             cmd = cmd,
           }
+      end
+      if lsp == "sumneko_lua" then
+        local cmd = {'/home/yucongxing/lua-language-server/bin/lua-language-server'}
+        local settings = {
+          Lua = {
+            runtime = {
+              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+              version = 'LuaJIT',
+            },
+            diagnostics = {
+              -- Get the language server to recognize the `vim` global
+              globals = {'vim'},
+            },
+            workspace = {
+              -- Make the server aware of Neovim runtime files
+              library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+              enable = false,
+            },
+          },
+        }
+        options = {
+          on_attach = on_attach,
+          capabilities = capabilities,
+          cmd = cmd,
+          settings = settings,
+        }
       end
       require('lspconfig')[lsp].setup(options)
     end

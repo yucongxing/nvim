@@ -70,6 +70,9 @@ return packer.startup(function(use)
   -- dressing.nvim
   use 'stevearc/dressing.nvim'
 
+  -- Comment
+  use 'terrortylor/nvim-comment'
+
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end

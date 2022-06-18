@@ -55,11 +55,6 @@ local cmd_string = string.format([[
     autocmd FileType qf,help,man,lspinfo, nnoremap <silent> <buffer> Q :close<CR>
   augroup end
 
-  augroup _auto_format
-    autocmd!
-    autocmd BufWritePre *.cpp,*.h,*.py,*.lua,*.c,*.cc,*.hpp,*.cxx :Format
-  augroup end
-
   augroup _auto_source_init
     autocmd!
     autocmd BufWritePost %s*.lua source <afile>

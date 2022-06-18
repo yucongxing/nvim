@@ -1,2 +1,2 @@
--- require('onedark').load()
-vim.cmd[[colorscheme NeoSolarized]]
+require('onedark').load()
+-- vim.cmd[[colorscheme NeoSolarized]]

@@ -36,6 +36,12 @@ local function lsp_keymap(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format({async = true})<CR>', opts)
   vim.cmd [[command! Format execute 'lua vim.lsp.buf.format({async = true})']]
+  vim.cmd [[
+    augroup _format
+    autocmd!
+    autocmd BufWritePre * :Format
+    augroup end
+  ]]
 end
 
 M.on_attach = function(client, bufnr)

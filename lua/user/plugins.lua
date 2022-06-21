@@ -35,6 +35,7 @@ return packer.startup(function(use)
   use 'nvim-lualine/lualine.nvim'
 
   -- LSP
+  use 'williamboman/nvim-lsp-installer'
   use 'neovim/nvim-lspconfig'
 
   -- color scheme

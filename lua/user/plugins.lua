@@ -31,6 +31,11 @@ return packer.startup(function(use)
 
   use "wbthomason/packer.nvim" -- Have packer manage itself
 
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
+
+  use 'lewis6991/gitsigns.nvim'
+
   -- Status line
   use 'nvim-lualine/lualine.nvim'
 
@@ -59,7 +64,6 @@ return packer.startup(function(use)
 
   -- neovim-cmake
   use 'Shatur/neovim-cmake'
-  use 'nvim-lua/plenary.nvim'
   use 'mfussenegger/nvim-dap'
 
   -- highlighting

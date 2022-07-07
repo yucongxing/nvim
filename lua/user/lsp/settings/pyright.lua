@@ -1,3 +1,9 @@
 return {
-  cmd = { 'pyright' },
+  seetting = {
+    python = {
+      analysis = {
+        typeCheckingMode = 'off',
+      }
+    }
+  }
 }

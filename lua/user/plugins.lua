@@ -23,7 +23,7 @@ end
 
 packer.init {
   display = {
-
+    open_fn = require('packer.util').float
   }
 }
 
@@ -34,13 +34,17 @@ return packer.startup(function(use)
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
 
-  use 'lewis6991/gitsigns.nvim'
+  use {
+    'lewis6991/gitsigns.nvim',
+    tag = 'release'
+  }
 
   -- Status line
   use 'nvim-lualine/lualine.nvim'
 
   -- LSP
-  use 'williamboman/nvim-lsp-installer'
+  use  "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim"
   use 'neovim/nvim-lspconfig'
 
   -- color scheme
@@ -69,7 +73,8 @@ return packer.startup(function(use)
   -- highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
+    run = ':TSUpdate',
+    commit = '4cccb6f'
   }
 
   -- dressing.nvim

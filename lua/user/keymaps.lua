@@ -20,9 +20,9 @@ _G.F5Compile = function()
   vim.cmd(':sp')
   vim.cmd(':res 10')
   if vim.bo.filetype == 'cpp' then
-    vim.cmd(':term g++ -std=c++17 -Wall % -o %<.out && ./%<.out')
+    vim.cmd(':term g++ -std=c++17 -Wall % -o %<.exe && %<.exe')
   elseif vim.bo.filetype == 'c' then
-    vim.cmd(':term gcc -Wall % -o %<.out && ./%<.out')
+    vim.cmd(':term gcc -Wall % -o %<.exe && %<.exe')
   elseif vim.bo.filetype == 'py' then
     vim.cmd(':term python %')
   elseif vim.bo.filetype == 'sh' then

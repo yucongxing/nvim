@@ -39,7 +39,6 @@ local options = {
   foldenable = false, -- no fold to be applied when open a file
   foldlevel = 99, -- if not set this, fold will be everywhere
   diffopt = "vertical,filler,internal,context:4", -- vertical diff split view
-  cscopequickfix = "s-,c-,d-,i-,t-,e-", -- cscope output to quickfix window
 }
 
 vim.opt.shortmess:append "c"
@@ -61,3 +60,5 @@ local cmd_string = string.format([[
   augroup end
 ]], vim.fn.stdpath('config'))
 vim.cmd(cmd_string)
+
+vim.cmd[[let g:python3_host_prog="C:\\Software\\anaconda3\\python.exe"]]

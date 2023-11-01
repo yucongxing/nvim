@@ -1,25 +1,25 @@
-local servers = { 'clangd', 'pyright', 'sumneko_lua' }
-
-local on_attach = require('user.lsp.lsp_config').on_attach
-local capabilities = require('user.lsp.lsp_config').capabilities
-
-for _, lsp in pairs(servers) do
-  local opt = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+local ensure_installed_servers = { 'clangd', 'pyright', 'lua_ls', 'cmake' }
+require("mason").setup()
+require("mason-lspconfig").setup{
+  ensure_installed = ensure_installed_servers
+}
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lspconfig = require('lspconfig')
+local common_opt = {capabilities = capabilities}
+for _, lsp in pairs(ensure_installed_servers) do
   if lsp == 'clangd' then
-    local clangd_opt = require('user.lsp.settings.clangd')
-    opt = vim.tbl_deep_extend("force", clangd_opt, opt)
+    local opt = require('user.lsp.settings.clangd')
+    vim.tbl_extend('force', common_opt, opt)
+    lspconfig[lsp].setup(opt)
+  elseif lsp == 'pyright' then
+    local opt = require('user.lsp.settings.pyright')
+    vim.tbl_extend('force', common_opt, opt)
+    lspconfig[lsp].setup(opt)
+  elseif lsp == 'lua_ls' then
+    local opt = require("user.lsp.settings.sumneko_lua")
+    vim.tbl_extend('force', common_opt, opt)
+    lspconfig[lsp].setup(opt)
+  else
+    lspconfig[lsp].setup{common_opt}
   end
-  if lsp == 'pyright' then
-    local pyright_opt = require('user.lsp.settings.pyright')
-    opt = vim.tbl_deep_extend("force", pyright_opt, opt)
-  end
-  if lsp == 'sumneko_lua' then
-    local lua_opt = require("user.lsp.settings.sumneko_lua")
-    opt = vim.tbl_deep_extend("force", lua_opt, opt)
-  end
-
-  require('lspconfig')[lsp].setup(opt)
 end

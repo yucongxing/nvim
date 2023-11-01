@@ -1,4 +1,4 @@
-local ensure_installed_servers = { 'clangd', 'pyright', 'lua_ls', 'cmake' }
+local ensure_installed_servers = { 'clangd', 'pyright', 'lua_ls', 'neocmake' }
 require("mason").setup()
 require("mason-lspconfig").setup{
   ensure_installed = ensure_installed_servers
@@ -9,10 +9,6 @@ local common_opt = {capabilities = capabilities}
 for _, lsp in pairs(ensure_installed_servers) do
   if lsp == 'clangd' then
     local opt = require('user.lsp.settings.clangd')
-    vim.tbl_extend('force', common_opt, opt)
-    lspconfig[lsp].setup(opt)
-  elseif lsp == 'pyright' then
-    local opt = require('user.lsp.settings.pyright')
     vim.tbl_extend('force', common_opt, opt)
     lspconfig[lsp].setup(opt)
   elseif lsp == 'lua_ls' then

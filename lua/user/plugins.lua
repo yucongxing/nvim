@@ -1,83 +1,82 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
 
-return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+local plugins = {
+  -- color scheme
+  {
+    'navarasu/onedark.nvim',
+    lazy = false,
+    priority = 1000,
+  },
 
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-lua/plenary.nvim'
+  'nvim-lua/popup.nvim',
+  'nvim-lua/plenary.nvim',
 
-  use {
-    'lewis6991/gitsigns.nvim',
-    tag = 'release'
-  }
+  'lewis6991/gitsigns.nvim',
 
   -- Status line
-  use 'nvim-lualine/lualine.nvim'
+  'nvim-lualine/lualine.nvim',
 
   -- LSP
-  use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim"
-  use 'neovim/nvim-lspconfig'
-
-  -- color scheme
-  use 'overcache/NeoSolarized'
-  use 'navarasu/onedark.nvim'
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  'neovim/nvim-lspconfig',
 
   -- completion
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-nvim-lua'
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-cmdline',
+  'saadparwaiz1/cmp_luasnip',
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-nvim-lua',
 
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use 'rafamadriz/friendly-snippets'
+  "L3MON4D3/LuaSnip", --snippet engine
+  'rafamadriz/friendly-snippets',
 
   -- autopair
-  use 'windwp/nvim-autopairs'
+  'windwp/nvim-autopairs',
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      local configs = require("nvim-treesitter.configs")
 
-  -- highlighting
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    commit = '4cccb6f'
-  }
-
+      configs.setup({
+        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "cpp", "cmake", "bash", "python" },
+        sync_install = false,
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
+    end
+  },
   -- gitsigns
-  use {
-    'lewis6991/gitsigns.nvim',
-    tag = 'release'
-  }
+  'lewis6991/gitsigns.nvim',
   -- dressing.nvim
-  use 'stevearc/dressing.nvim'
+  'stevearc/dressing.nvim',
 
   -- Comment
-  use 'terrortylor/nvim-comment'
+  'terrortylor/nvim-comment',
 
   --file tree
-  use {
+  {
     'nvim-tree/nvim-tree.lua',
-    requires = {
+    dependencies = {
       'nvim-tree/nvim-web-devicons', -- optional
-    },
+    }
   }
+}
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+local opt = {}
+require("lazy").setup(plugins, opts);

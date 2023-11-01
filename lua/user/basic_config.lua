@@ -61,4 +61,4 @@ local cmd_string = string.format([[
 ]], vim.fn.stdpath('config'))
 vim.cmd(cmd_string)
 
-vim.cmd[[let g:python3_host_prog="C:\\Software\\anaconda3\\python.exe"]]
+vim.cmd[[let g:python3_host_prog="C:\\Software\\anaconda3\\envs\\neovim_python\\python.exe"]]

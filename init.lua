@@ -5,4 +5,3 @@ require "user.plugins"
 require "user.colorscheme"
 require "user.config"
 require "user.lsp"
-

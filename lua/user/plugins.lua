@@ -14,6 +14,14 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    tag = 'release'
+  }
+
   -- Status line
   use 'nvim-lualine/lualine.nvim'
 
@@ -44,7 +52,8 @@ return require('packer').startup(function(use)
   -- highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
+    run = ':TSUpdate',
+    commit = '4cccb6f'
   }
 
   -- gitsigns

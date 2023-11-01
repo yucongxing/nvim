@@ -5,4 +5,3 @@ end
 
 require('user.lsp.servers_config')
 require('user.lsp.lsp_config')
-

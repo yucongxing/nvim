@@ -7,7 +7,7 @@ local options = {
   fileencoding = "utf-8", -- the encoding written to a file
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
-  mouse = "a", -- allow the mouse to be used in neovim
+  mouse = "", -- allow the mouse to be used in neovim
   pumheight = 10, -- pop up menu height
   showmode = false, -- we don't need to see things like -- INSERT -- anymore
   showtabline = 2, -- always show tabs
@@ -61,4 +61,4 @@ local cmd_string = string.format([[
 ]], vim.fn.stdpath('config'))
 vim.cmd(cmd_string)
 
-vim.cmd[[let g:python3_host_prog="C:\\Software\\anaconda3\\python.exe"]]
+vim.cmd[[let g:python3_host_prog="~/python_base_venv/bin/python"]]

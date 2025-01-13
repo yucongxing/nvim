@@ -3,3 +3,4 @@ plugged/
 autoload/plug.vim.old
 plugin/
 .netrwhist
+lazy-lock.json

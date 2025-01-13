@@ -69,6 +69,9 @@ local plugins = {
   -- Comment
   'terrortylor/nvim-comment',
 
+  -- linter
+  'mfussenegger/nvim-lint',
+
   --file tree
   {
     'nvim-tree/nvim-tree.lua',
@@ -79,4 +82,4 @@ local plugins = {
 }
 
 local opt = {}
-require("lazy").setup(plugins, opts);
+require("lazy").setup(plugins, opt);
